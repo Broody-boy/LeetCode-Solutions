@@ -9,7 +9,7 @@ public:
             if(count == 0)
                 element = nums[i];
 
-            if(nums[i] == element)  //case 1 and 2 are already covered
+            if(nums[i] == element)  //case 1 and 2 are both covered by this
                 count ++;
             else
                 count--;
