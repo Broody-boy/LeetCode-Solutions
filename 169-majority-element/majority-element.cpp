@@ -1,3 +1,7 @@
+//Case 1: If Count is 0 then store the current element of the array as Element.
+//Case 2: If the current element and Element are the same increase the Count by 1.
+//Case 3: If they are different decrease the Count by 1.
+
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
