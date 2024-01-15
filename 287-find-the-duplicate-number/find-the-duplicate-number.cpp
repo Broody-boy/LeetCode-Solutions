@@ -8,16 +8,16 @@ public:
         do{
             slow = nums[slow];
             fast = nums[nums[fast]];
-        }while(nums[slow] != nums[fast]);
+        }while(slow != fast);
 
         fast = 0;
 
-        while(nums[slow] != nums[fast]){
+        do{
             slow = nums[slow];
             fast = nums[fast];
-        }
+        }while(slow != fast);
 
-        return nums[slow];
+        return slow;
 
     }
 };
