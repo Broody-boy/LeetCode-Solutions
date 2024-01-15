@@ -1,37 +1,28 @@
 class Solution {
 public:
     vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
-        vector<int> ans;
+        
+        vector<int> ans(2);
         unordered_map<int, int> m;
 
         int n = grid.size();
-        long long sum = 0;
-        int repeated = -1;
 
         for(int i = 0; i < n; i++){
-
             for(int j = 0; j < n; j++){
-
-                sum += grid[i][j];
-
-                if (m[grid[i][j]] == 0)
-                    m[grid[i][j]]++;
-                else{
-                    repeated = grid[i][j];
-                    ans.push_back(repeated);
-                }
-
+                m[grid[i][j]]++;
             }
-
         }
 
-        //We have found the repeated element. Now find missing:
-        long long normalSum = (n*n) * (n*n + 1) / 2;    // sum = n*(n + 1)/2
+        for(int i = 1; i <= n * n; i++){
 
-        int missing = normalSum - (sum - repeated);
-
-        ans.push_back(missing);
+            (m[i] == 2)
+                ? ans[0] = i
+            : (m[i] == 0) 
+                ? ans[1] = i
+            : 0;
+        }
 
         return ans;
+
     }
 };
