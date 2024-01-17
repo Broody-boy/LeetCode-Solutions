@@ -6,7 +6,7 @@ public:
 
         unordered_set<char> st;
 
-        while(l <= r && r < s.length()){
+        while(r < s.length()){
             
             if(st.find(s[r]) == st.end()){
                 st.insert(s[r]);
