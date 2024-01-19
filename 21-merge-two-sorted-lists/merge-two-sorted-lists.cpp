@@ -15,8 +15,8 @@ public:
         if(list1==NULL) return list2;
         if(list2==NULL) return list1;
 
-        ListNode*l1 = (list1->val > list2->val) ? list2 : list1;  //l1 is smaller one
-        ListNode*l2 = (list1->val > list2->val) ? list1 : list2;  //l2 is larger one
+        ListNode*l1 = (list1->val < list2->val) ? list1 : list2;  //l1 is smaller one
+        ListNode*l2 = (list1->val < list2->val) ? list2 : list1;  //l2 is larger one
         
         ListNode *head = l1;
 
