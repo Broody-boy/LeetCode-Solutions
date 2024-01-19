@@ -13,13 +13,14 @@ public:
         ListNode *slow = head;
         ListNode *fast = head;
 
-        do{
-            if(fast == NULL || fast->next == NULL) return false; //cycle doesn't exist
+        while(fast != NULL && fast->next != NULL){
             slow = slow->next;
             fast = fast->next->next;
-        }while(slow!=fast);
 
-        return true; //cycle exists
+            if(slow == fast) return true;
+        };
+
+        return false;
 
     }
 };
