@@ -12,42 +12,25 @@ class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         
-        ListNode* first = list1;
-        ListNode* second = list2;
+        if(list1==NULL) return list2;
+        if(list2==NULL) return list1;
 
-        ListNode *dummy = new ListNode();
-        ListNode *duplicateDummy = dummy;
+        ListNode*l1 = (list1->val > list2->val) ? list2 : list1;  //l1 is smaller one
+        ListNode*l2 = (list1->val > list2->val) ? list1 : list2;  //l2 is larger one
+        
+        ListNode*res = l1;
 
-        while(first != NULL && second != NULL){
-            ListNode *newNode = new ListNode();
-
-            if(first->val <= second->val) {
-                newNode->val = first->val;
-                first = first->next;
-            } else {
-                newNode->val = second->val;
-                second = second->next;
+        while(l2!=NULL && l1!=NULL){
+            ListNode*temp = NULL;
+            while(l1!=NULL && l1->val <= l2->val){
+                temp = l1;
+                l1 = l1->next;
             }
-            duplicateDummy->next = newNode;
-            duplicateDummy = duplicateDummy->next;
+
+            temp->next = l2;
+            swap(l1,l2);
         }
 
-        while(first != NULL){
-            ListNode *newNode = new ListNode();
-            newNode->val = first->val;
-            first = first->next;
-            duplicateDummy->next = newNode;
-            duplicateDummy = duplicateDummy->next;
-        }
-
-        while(second != NULL){
-            ListNode *newNode = new ListNode();
-            newNode->val = second->val;
-            second = second->next;
-            duplicateDummy->next = newNode;
-            duplicateDummy = duplicateDummy->next;
-        }
-
-        return dummy->next;
+        return res;
     }
 };
