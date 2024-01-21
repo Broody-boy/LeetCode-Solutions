@@ -9,7 +9,7 @@
 class Solution {
 public:
 
-    bool hasCycle(ListNode *head) {
+    bool hasCycle(ListNode *head) {   //Sourced from Linked List cycle question
 
         ListNode *slow = head;
         ListNode *fast = head;
