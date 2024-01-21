@@ -12,10 +12,10 @@ public:
 
         fast = 0;
 
-        do{
+        while(slow != fast){
             slow = nums[slow];
             fast = nums[fast];
-        }while(slow != fast);
+        };
 
         return slow;
 
