@@ -32,6 +32,20 @@ public:
         return kthNode;
     }
 
+    bool isCompleteGroup(ListNode* head, int k){
+
+        int length = 0;
+        ListNode*temp = head;
+
+        while(temp!=NULL){
+            temp = temp->next;
+            length++;
+        }
+
+        if (length < k) return false;
+        return true;
+    }
+
     ListNode* reverseKGroup(ListNode* head, int k) {
 
         ListNode* nextNode = head;
@@ -39,30 +53,29 @@ public:
         ListNode* temp = head;
         ListNode* kthNode = NULL;
 
-
-        while(temp!=NULL){
+        while(isCompleteGroup(temp, k)){
 
             kthNode = findKthNode(temp, k);
 
-            if(!kthNode){
-                if(prevLast) prevLast->next = temp;
-                break;
-            }
+            nextNode = kthNode->next;       //Preserve the next block
 
-            nextNode = kthNode->next;   //Preserve the next block
-            
-            kthNode->next = NULL;       //and make the block individual inked list:
+            kthNode->next = NULL;           //and make the block individual inked list:
 
             reverseLL(temp);
+
             temp->next = nextNode;
 
             if(temp == head)
-                head = kthNode;  //For first group, update the head.
+                head = kthNode;             //For first group, update the head.
             else
-                prevLast->next = kthNode;
+                prevLast->next = kthNode;   //Else join this reversed block to previous chain
+
             prevLast = temp;
             temp = nextNode;
         }
+
+        //for the remaining:
+        if(prevLast) prevLast->next = temp;
 
         return head;
     }
