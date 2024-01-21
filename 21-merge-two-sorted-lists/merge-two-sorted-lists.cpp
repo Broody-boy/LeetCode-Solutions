@@ -10,31 +10,29 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         
-        if(list1==NULL) return list2;
-        if(list2==NULL) return list1;
+        if(l1==NULL) return l2;
+        if(l2==NULL) return l1;
 
-        ListNode*l1 = (list1->val < list2->val) ? list1 : list2;  //l1 is smaller one
-        ListNode*l2 = (list1->val < list2->val) ? list2 : list1;  //l2 is larger one
-        
-        ListNode *head = l1;
+        ListNode *dummy = new ListNode();
+        ListNode *res = dummy;
 
-        while(l1!=NULL && l2!=NULL){
-            ListNode*temp = NULL;
-            while(l1!=NULL && l1->val <= l2->val){
-                temp = l1;
+        while(l1 != NULL && l2 != NULL){
+            if(l1->val < l2->val){
+                res->next = l1;
+                res = l1;
                 l1 = l1->next;
+            } else {
+                res->next = l2;
+                res = l2;
+                l2 = l2->next;
             }
-
-            temp->next = l2;
-            swap(l1,l2);
         }
-        // In above loop:
-        // Stop when either l1 or l2 is null
-        // because this means that entire linked list has been consumed.
-        // So, the other linked list can have its remaining links unchanged.
 
-        return head;
+        if(l1) res->next = l1;
+        if(l2) res->next = l2;
+
+        return dummy->next;
     }
 };
