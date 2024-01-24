@@ -9,7 +9,7 @@ public:
         for(int i = low; i <= mid; i++){
             while(right <= high && nums[i] > (long long)2 * nums[right]) right++;
             ans+=(right-(mid+1));
-        }
+        } //long long cast before 2 is important otherwise 2 * nums[right] is considered as integer
 
         return ans;
     }
@@ -50,7 +50,7 @@ public:
 
         int countLeft = mergeSort(nums, low, mid);
         int countRight = mergeSort(nums, mid+1, high);
-        int countCurr =  countPairs(nums, low, mid, high);
+        int countCurr =  countPairs(nums, low, mid, high);     // Do this step before merge
         merge(nums, low, mid, high);
 
         return countLeft + countRight + countCurr;
