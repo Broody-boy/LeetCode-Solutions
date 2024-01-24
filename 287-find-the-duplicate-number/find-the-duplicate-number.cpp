@@ -10,14 +10,14 @@ public:
             fast = nums[nums[fast]];
         }while(slow != fast);
 
-        fast = 0;
+        slow = 0;
 
         while(slow != fast){
             slow = nums[slow];
             fast = nums[fast];
         }
 
-        return slow;
+        return fast;
 
     }
 };
