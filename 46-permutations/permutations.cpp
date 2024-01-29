@@ -1,24 +1,24 @@
 class Solution {
 public:
 
-    void helper(int i, vector<int>& v, unordered_map<int,int>& mp , vector<int>& nums, vector<vector<int>>& ans){
+    void helper(vector<int>& v, vector<int>& freq, vector<int>& nums, vector<vector<int>>& ans){
         
-        if(i == nums.size()){
+        if(v.size() == nums.size()){
             ans.push_back(v);
             return;
         }
 
 
-        for(int num : nums){
-            if(mp[num] == 0){       //num not already taken
+        for(int i = 0; i < nums.size(); i++){
+            if(freq[i] == 0){       //index not already taken
 
-                v.push_back(num);
-                mp[num] = 1;
+                v.push_back(nums[i]);
+                freq[i] = 1;
 
-                helper(i + 1, v, mp, nums, ans);
+                helper(v, freq, nums, ans);
 
                 v.pop_back();
-                mp[num] = 0;
+                freq[i] = 0;
             }
         }
     }
@@ -26,9 +26,9 @@ public:
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
         vector<int> v;
-        unordered_map<int, int> mp;
+        vector<int> freq(nums.size(), 0);
 
-        helper(0, v, mp, nums, ans);
+        helper(v, freq, nums, ans);
 
         return ans;
     }
