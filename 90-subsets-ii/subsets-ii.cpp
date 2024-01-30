@@ -1,29 +1,31 @@
 class Solution {
 public:
 
-    void helper(int i, vector<int> v, set<vector<int>> &ans,vector<int> &nums){
+    void helper(int ind, vector<int> &v, vector<vector<int>> &ans,vector<int> &nums){
 
-        if(i == nums.size()){
-            sort(v.begin(), v.end());
-            ans.insert(v);
-            return;
+        ans.push_back(v);
+
+        for(int i = ind; i < nums.size(); i++){
+
+            if(i != ind && nums[i] == nums[i-1]) continue;
+
+            v.push_back(nums[i]);
+            helper(i + 1, v, ans, nums);
+            v.pop_back();
         }
 
-        //pick:
-        v.push_back(nums[i]);
-        helper(i+1, v, ans, nums);
-
-        //Not pick:
-        v.pop_back();
-        helper(i+1, v, ans, nums);
     }
 
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        set<vector<int>> ans;
+
         vector<int> v;
+        vector<vector<int>> ans;
+
+        sort(nums.begin(), nums.end());
 
         helper(0, v, ans, nums);
 
-        return vector<vector<int>>(ans.begin(), ans.end());
+        return ans;
+
     }
 };
