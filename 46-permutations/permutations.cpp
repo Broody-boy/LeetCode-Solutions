@@ -1,34 +1,29 @@
 class Solution {
 public:
 
-    void helper(vector<int>& v, vector<int>& freq, vector<int>& nums, vector<vector<int>>& ans){
-        
-        if(v.size() == nums.size()){
+    void helper(int i, vector<int> &v, vector<vector<int>>& ans, int n){
+
+        if(i == n){
             ans.push_back(v);
             return;
         }
 
 
-        for(int i = 0; i < nums.size(); i++){
-            if(freq[i] == 0){       //index not already taken
-
-                v.push_back(nums[i]);
-                freq[i] = 1;
-
-                helper(v, freq, nums, ans);
-
-                v.pop_back();
-                freq[i] = 0;
-            }
+        for(int j = i; j < n; j++){
+            swap(v[i], v[j]);
+            helper(i+1, v, ans, n);
+            swap(v[i], v[j]);
         }
+
     }
 
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> ans;
-        vector<int> v;
-        vector<int> freq(nums.size(), 0);
 
-        helper(v, freq, nums, ans);
+        vector<vector<int>>ans;
+        vector<int> v(nums.begin(), nums.end());
+        int n = nums.size();
+
+        helper(0, v, ans, n);
 
         return ans;
     }
