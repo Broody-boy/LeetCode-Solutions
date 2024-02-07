@@ -3,15 +3,18 @@ public:
 
     int helper(int k){
 
-        vector<int> dp(k+1, -1);
+        int prev2 = 1;
+        int prev = 1;
 
-        dp[0] = 1;
-        dp[1] = 1;
+        int curi;
 
-        for(int i = 2; i <= k; i++)
-            dp[i] = dp[i-1] + dp[i-2];
+        for(int i = 2; i <= k; i++){
+            curi = prev + prev2;
+            prev2 = prev;
+            prev = curi;
+        }
 
-        return dp[k];
+        return prev;
     }
 
     int climbStairs(int n) {
