@@ -1,19 +1,19 @@
 class Solution {
 public:
 
-    int helper(int i, vector<int> &dp){
-        if(i==0) return 1;
-        if(i==1) return 1;
+    void helper(int n, vector<int> &dp){
+        dp[0] = 1;
+        if(n >= 1) dp[1] = 1;
 
-        if(dp[i] != -1) return dp[i];
-
-        return dp[i] = helper(i-1, dp) + helper(i-2, dp);
+        for(int i = 2; i <= n; i++){
+            dp[i] = dp[i-1] + dp[i-2];
+        }
     }
 
     int climbStairs(int n) {
 
         vector<int> dp(n+1, -1);
-        return helper(n, dp);
-
+        helper(n, dp);
+        return dp[n];
     }
 };
