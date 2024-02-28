@@ -1,18 +1,27 @@
 class Solution {
 public:
 
-    int helper(int i, int j, vector<vector<int>>& obstacleGrid, vector<vector<int>> &dp){
-        
-        if(i==0 && j==0 && obstacleGrid[i][j] != 1) return 1;
+    void helper(int m, int n, vector<vector<int>>& obstacleGrid, vector<vector<int>> &dp){
 
-        if(i < 0 || j < 0 || obstacleGrid[i][j] == 1) return 0; //Here, i have united the base cases unlike striver
+        dp[0][0] = (obstacleGrid[0][0] == 0) ? 1 : 0; //No obstacle => 1. obstacle => 0.
 
-        if(dp[i][j] != -1) return dp[i][j];
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
 
-        int up = helper(i-1, j, obstacleGrid, dp);
-        int left = helper(i, j-1, obstacleGrid, dp);
+                if(i == 0 && j == 0) continue;
 
-        return dp[i][j] = up + left;
+                if(obstacleGrid[i][j] == 1){
+                    dp[i][j] = 0;
+                    continue;
+                }
+
+                int up = (i>0) ? dp[i-1][j] : 0;
+                int left = (j>0) ? dp[i][j-1] : 0;
+
+                dp[i][j] = up + left;
+            }
+        }
+
     }
 
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
@@ -21,6 +30,7 @@ public:
 
         vector<vector<int>> dp(m+1, vector<int>(n+1, -1));
 
-        return helper(m-1, n-1, obstacleGrid, dp);
+        helper(m, n, obstacleGrid, dp);
+        return dp[m-1][n-1];
     }
 };
