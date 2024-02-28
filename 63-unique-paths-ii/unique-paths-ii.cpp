@@ -5,7 +5,7 @@ public:
         
         if(i==0 && j==0 && obstacleGrid[i][j] != 1) return 1;
 
-        if(i < 0 || j < 0 || obstacleGrid[i][j] == 1) return 0;
+        if(i < 0 || j < 0 || obstacleGrid[i][j] == 1) return 0; //Here, i have united the base cases unlike striver
 
         if(dp[i][j] != -1) return dp[i][j];
 
