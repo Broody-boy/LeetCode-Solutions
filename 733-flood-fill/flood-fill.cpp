@@ -10,6 +10,8 @@ public:
     }
 
     void helper(vector<vector<int>>& image, int i, int j, int startColor, int color){
+        image[i][j] = color;
+
         if(canFlood(image, i+1, j, startColor)){
             image[i+1][j] = color;
             helper(image, i+1, j, startColor, color);
@@ -34,7 +36,6 @@ public:
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
         if(image[sr][sc] == color) return image;
         helper(image, sr, sc, image[sr][sc], color);
-        image[sr][sc] = color;
         return image;
     }
 };
