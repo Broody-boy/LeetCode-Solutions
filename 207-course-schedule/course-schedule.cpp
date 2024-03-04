@@ -5,7 +5,7 @@ public:
         //convert to adjacency list:
         vector<vector<int>> adj(numCourses);
         for(auto pair : prerequisites){
-            adj[pair[0]].push_back(pair[1]);
+            adj[pair[1]].push_back(pair[0]);
         }
 
         vector<int> inDegree(numCourses, 0);
