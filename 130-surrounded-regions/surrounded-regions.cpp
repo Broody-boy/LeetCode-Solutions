@@ -5,7 +5,7 @@ public:
         int m = board.size();
         int n = board[0].size();
 
-        if(i < 0 || j < 0 || i > m-1 || j > n-1 || vis[i][j] || board[i][j] == 'X') return;
+        if(i < 0 || j < 0 || i > m-1 || j > n-1 || vis[i][j] || board[i][j] != 'O') return;
         vis[i][j] = 1;
 
         dfs(i+1, j, board, vis);
