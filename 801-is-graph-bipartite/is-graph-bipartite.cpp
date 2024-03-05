@@ -6,7 +6,7 @@ public:
         int n = adj.size();
 
         vector<int> vis(n,0);
-        vector<int> color(n, -1);
+        vector<int> color(n, -1);       //Initially, no color => -1
         queue<int> q;
 
         for(int node = 0; node < n; node++){
