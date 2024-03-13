@@ -6,7 +6,10 @@ public:
 
         if(dp[row][col] != -1) return dp[row][col];
 
-        return dp[row][col] = min(triangle[row][col] + helper(row+1, col, n, triangle, dp), triangle[row][col] + helper(row+1, col+1, n, triangle, dp));
+        int d = triangle[row][col] + helper(row+1, col, n, triangle, dp);
+        int dr = triangle[row][col] + helper(row+1, col+1, n, triangle, dp);
+
+        return dp[row][col] = min(d, dr);
     }
 
     int minimumTotal(vector<vector<int>>& triangle) {
