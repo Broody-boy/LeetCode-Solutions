@@ -19,6 +19,7 @@ public:
         int n = triangle.size();
 
         vector<vector<int>>dp (n+1, vector<int>(n+1, 0));
+        
         helper(0, 0, n, triangle, dp);
         return dp[0][0];
     }
