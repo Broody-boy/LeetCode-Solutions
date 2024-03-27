@@ -56,7 +56,7 @@ public:
         while(!currRotten.empty()) {
             vector<pair<int, int>> nextRotten = returnNextRound(currRotten, fresh, grid);
             if(!nextRotten.empty()) ans++;
-            currRotten = nextRotten;  // For the next round, current round's nextRotten will become its currRotten.
+            currRotten = nextRotten;  // For the next round, nextRotten will become its currRotten.
         }
 
         return fresh == 0 ? ans : -1; // If there are still fresh oranges left, return -1
