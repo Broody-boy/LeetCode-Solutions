@@ -14,7 +14,7 @@ public:
             dfs(i, j+1, vis, board);
             dfs(i-1, j, vis, board);
             dfs(i, j-1, vis, board);
-        }
+        } //else-> return as it is;
 
     }
 
@@ -27,17 +27,17 @@ public:
 
         //left right:
         for(int row = 0; row < m; row++){
-            //if(mat[row][0] == 'O' && !vis[row][0])
+            //if(mat[row][0] == 'O' && !vis[row][0])        //no need of this as dfs function can handle it
             dfs(row, 0, vis, board);
-            //if(mat[row][n-1] == 'O' && !vis[row][n-1])
+            //if(mat[row][n-1] == 'O' && !vis[row][n-1])    //no need of this as dfs function can handle it
             dfs(row, n-1, vis, board);
         }
 
         //top bottom:
         for(int col = 0; col < n; col++){
-            //if(mat[0][col] == 'O' && !vis[0][col])
+            //if(mat[0][col] == 'O' && !vis[0][col])        //no need of this as dfs function can handle it
             dfs(0, col, vis, board);
-            //if(mat[m-1][col] == 'O' && !vis[m-1][col])
+            //if(mat[m-1][col] == 'O' && !vis[m-1][col])    //no need of this as dfs function can handle it
             dfs(m-1, col, vis, board);
         }
 
