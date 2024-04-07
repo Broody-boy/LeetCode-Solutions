@@ -38,18 +38,15 @@ public:
         sort(arr.begin(), arr.end(), comp);
 
         vector<int> dp(n,1);
-        int maxi = 1;
         
-        for(int i=0; i <= n-1; i++){            
+        for(int i=1; i <= n-1; i++){            
             for(int prev = 0; prev < i; prev++){
                 if(compare(arr[prev], arr[i]) && 1 + dp[prev] > dp[i]){
-                    // cout << arr[i] << " ";
                     dp[i] = 1 + dp[prev];
                 }
             }
-            
-            if(dp[i] > maxi) maxi = dp[i];
         }
-        return maxi;
+
+        return *max_element(dp.begin(), dp.end());
     }
 };
