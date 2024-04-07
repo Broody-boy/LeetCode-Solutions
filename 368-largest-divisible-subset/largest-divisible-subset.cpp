@@ -8,7 +8,7 @@ public:
         vector<int> hash(n);
         for(int i = 0; i < n; i++) hash[i] = i;
 
-        for(int i = 0; i < n; i++){
+        for(int i = 1; i < n; i++){
             for(int prev = 0; prev < i; prev++){
                 if(arr[i] % arr[prev] == 0 && 1+dp[prev] > dp[i]){
                     dp[i] = 1 + dp[prev];
